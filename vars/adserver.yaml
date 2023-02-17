@@ -17,3 +17,9 @@ php_pool: true
 min_cores: 8
 min_memory_gb: 8
 min_disk_gb: 512
+
+release_repo_name: adshares-adserver
+release_repo_org: swashapp
+repo_url: "https://github.com/{{ release_repo_org }}/{{ release_repo_name }}.git"
+repo_version: "{{ 'alpha' if server_env is defined and server_env == 'dev' else 'beta' if server_env is defined and server_env == 'test' else 'production' | default('production') }}"
+release_tag: "{{ 'v2.8.0' if server_env is defined and server_env == 'dev' else 'v2.8.0' if server_env is defined and server_env == 'test' else 'v2.5.0' | default('v2.4.12') }}"

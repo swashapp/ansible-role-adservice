@@ -17,7 +17,13 @@
     loop_var: purge_dir
   when: deploy_purge|bool
 
-- name: "{{ service_name }} | deploy | update | Git update {{ repo_url }}"
+- name: "{{ service_name }} | deploy | update | fetch {{ repo_url }} branches"
+  ansible.builtin.command: 
+    cmd: "git fetch --prune --tags"
+    chdir: "{{ deploy_dir }}"
+  become_user: "{{ service_user }}"
+
+- name: "{{ service_name }} | deploy | update | Git update {{ repo_url }} version {{ repo_version }}"
   ansible.builtin.git:
     repo: "{{ repo_url }}"
     dest: "{{ deploy_dir }}"
@@ -25,11 +31,11 @@
     force: true
   become_user: "{{ service_user }}"
 
-- name: "{{ service_name }} | deploy | update | Get service git version"
-  ansible.builtin.command: "git -C {{ deploy_dir }} describe --tags --always" # noqa command-instead-of-module
-  register: cmd
-  become_user: "{{ service_user }}"
-  changed_when: false
+# - name: "{{ service_name }} | deploy | update | Get service git version"
+#   ansible.builtin.command: "git -C {{ deploy_dir }} describe --tags --always" # noqa command-instead-of-module
+#   register: cmd
+#   become_user: "{{ service_user }}"
+#   changed_when: false
 
 - name: "{{ service_name }} | deploy | update | Read service git version"
-  ansible.builtin.set_fact: git_version="{{ cmd.stdout }}"
+  ansible.builtin.set_fact: git_version="{{ release_tag }}"

@@ -38,8 +38,8 @@
     - { key: 'sort_buffer_size', value: '64M' }
     - { key: 'table_open_cache', value: '10240' }
     - { key: 'table_definition_cache', value: '10240' }
-    - { key: 'innodb_buffer_pool_size', value: "{{ (ansible_memtotal_mb / 2) | int }}M" }
-    - { key: 'innodb_buffer_pool_instances', value: "{{ [ansible_processor_vcpus, ansible_memtotal_mb / 2] | min | int }}" }
+    - { key: 'innodb_buffer_pool_size', value: "{{ (ansible_memtotal_mb / 4) | int }}M" }
+    - { key: 'innodb_buffer_pool_instances', value: "{{ [ansible_processor_vcpus, ansible_memtotal_mb / 4] | min | int }}" }
     - { key: 'innodb_stats_on_metadata', value: 'OFF' }
     - { key: 'innodb_io_capacity', value: '1000' }
     - { key: 'innodb_io_capacity_max', value: '2000' }
