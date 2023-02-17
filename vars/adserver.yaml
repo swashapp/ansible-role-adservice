@@ -17,3 +17,9 @@ php_pool: true
 min_cores: 8
 min_memory_gb: 8
 min_disk_gb: 512
+
+release_repo_name: adserver
+release_repo_org: swashapp
+repo_url: "https://github.com/{{ release_repo_org }}/{{ release_repo_name }}.git"
+release_tag: v2.2.3
+release_commit: 904ab64ecbe623ca89fb2951621ebd0af3ff8bb6
