@@ -5,3 +5,9 @@ server_port: 8011
 php_pool: true
 min_cores: 8
 min_memory_gb: 8
+
+release_repo_name: adselect
+release_repo_org: adshares
+repo_url: "https://github.com/{{ release_repo_org }}/{{ release_repo_name }}.git"
+release_tag: v1.2.3
+release_commit: ""

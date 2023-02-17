@@ -2,3 +2,9 @@ setup_certbot: true
 server_prefix: "{{ aduser_prefix }}."
 server_add_host: true
 php_pool: true
+
+release_repo_name: adshares-aduser
+release_repo_org: swashapp
+repo_url: "https://github.com/{{ release_repo_org }}/{{ release_repo_name }}.git"
+release_tag: v3.2.2
+release_commit: 6d5f52815b0b25e368b6594df9cee2a1d5ee7d99

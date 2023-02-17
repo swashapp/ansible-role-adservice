@@ -9,13 +9,21 @@
     mode: '0755'
 
 # crate project folder
-- name: "{{ service_name }} | deploy | init | Git checkout {{ repo_url }}"
+- name: "{{ service_name }} | deploy | init | Git checkout {{ repo_url }} commit {{ release_commit }}"
   ansible.builtin.git:
     repo: "{{ repo_url }}"
     dest: "{{ service_dir }}-init"
-    version: "{{ repo_version }}"
+    version: "{{ release_commit }}"
   become_user: "{{ service_user }}"
-  when: not service_dir_stat.stat.exists
+  when: not service_dir_stat.stat.exists and release_commit | length > 0
+
+- name: "{{ service_name }} | deploy | init | Git checkout {{ repo_url }} tag {{ release_tag }}"
+  ansible.builtin.git:
+    repo: "{{ repo_url }}"
+    dest: "{{ service_dir }}-init"
+    version: "{{ release_tag }}"
+  become_user: "{{ service_user }}"
+  when: not service_dir_stat.stat.exists and release_commit | length == 0
 
 - name: "{{ service_name }} | deploy | init | Check .env file"
   ansible.builtin.set_fact:

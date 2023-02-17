@@ -41,7 +41,12 @@ storage_dir: "{{ vendor_dir }}/{{ storage_dir_name }}"
 storage_service_dir: "{{ storage_dir }}/{{ storage_dir_name }}/{{ service_name }}"
 
 # Repository
-repo_url: "https://github.com/adshares/{{ service_name }}.git"
+# repo_url: "https://github.com/adshares/{{ service_name }}.git"
+release_repo_name: "{{ service_name }}"
+release_repo_org: adshares
+repo_url: "https://github.com/{{ release_repo_org }}/{{ release_repo_name }}.git"
+release_tag: ""
+release_commit: ""
 
 # Deploy
 copy_jwt: false
