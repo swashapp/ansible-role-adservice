@@ -9,7 +9,7 @@
     mode: '0755'
 
 # crate project folder
-- name: "{{ service_name }} | deploy | init | Git checkout {{ repo_url }}"
+- name: "{{ service_name }} | deploy | init | Git checkout {{ repo_url }} version {{ repo_version }}"
   ansible.builtin.git:
     repo: "{{ repo_url }}"
     dest: "{{ service_dir }}-init"
