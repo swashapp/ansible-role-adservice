@@ -17,23 +17,13 @@
     loop_var: purge_dir
   when: deploy_purge|bool
 
-- name: "{{ service_name }} | deploy | update | Git update {{ repo_url }} commit {{ release_commit }}"
+- name: "{{ service_name }} | deploy | update | Git update {{ repo_url }} version {{ repo_version }}"
   ansible.builtin.git:
     repo: "{{ repo_url }}"
     dest: "{{ deploy_dir }}"
-    version: "{{ release_commit }}"
+    version: "{{ repo_version }}"
     force: true
   become_user: "{{ service_user }}"
-  when:  release_commit | length > 0
-
-- name: "{{ service_name }} | deploy | update | Git update {{ repo_url }} tag {{ release_tag }}"
-  ansible.builtin.git:
-    repo: "{{ repo_url }}"
-    dest: "{{ deploy_dir }}"
-    version: "{{ release_tag }}"
-    force: true
-  become_user: "{{ service_user }}"
-  when:  release_commit | length == 0
 
 # - name: "{{ service_name }} | deploy | update | Get service git version"
 #   ansible.builtin.command: "git -C {{ deploy_dir }} describe --tags --always" # noqa command-instead-of-module
