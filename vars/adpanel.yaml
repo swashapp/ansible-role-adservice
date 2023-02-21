@@ -15,4 +15,4 @@ release_repo_name: adshares-adpanel
 release_repo_org: swashapp
 repo_url: "https://github.com/{{ release_repo_org }}/{{ release_repo_name }}.git"
 release_tag: v2.2.3
-release_commit: a908654cc1c749b14618ec1d7c5a551e95ec53d1
+repo_version: "{{ release_tag if release_repo_org == 'adshares' else 'beta' if server_env is defined and server_env == 'test' else 'master' | default('master') }}"

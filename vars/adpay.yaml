@@ -6,4 +6,4 @@ release_repo_name: adpay
 release_repo_org: adshares
 repo_url: "https://github.com/{{ release_repo_org }}/{{ release_repo_name }}.git"
 release_tag: v1.4.2
-release_commit: ""
+repo_version: master
