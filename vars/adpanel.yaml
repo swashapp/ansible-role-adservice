@@ -11,8 +11,10 @@ deploy_refresh: ~
 deploy_clear: ~
 deploy_services: ~
 
+
 release_repo_name: adshares-adpanel
 release_repo_org: swashapp
 repo_url: "https://github.com/{{ release_repo_org }}/{{ release_repo_name }}.git"
-release_tag: v2.2.3
-repo_version: "{{ release_tag if release_repo_org == 'adshares' else 'beta' if server_env is defined and server_env == 'test' else 'master' | default('master') }}"
+# repo_version: "{{ release_tag if release_repo_org == 'adshares' else 'beta' if server_env is defined and server_env == 'test' else 'production' | default('production') }}"
+repo_version: "{{ 'alpha' if server_env is defined and server_env == 'dev' else 'beta' if server_env is defined and server_env == 'test' else 'production' | default('production') }}"
+release_tag: "{{ 'v2.4.6' if server_env is defined and server_env == 'dev' else 'v2.2.3' if server_env is defined and server_env == 'test' else 'v2.2.3' | default('v2.2.3') }}"
