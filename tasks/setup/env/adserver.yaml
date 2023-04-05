@@ -97,3 +97,11 @@
     path: "{{ service_dir }}-init/{{ service_env_file_local }}"
     regexp: '^ADSHARES_WORKINGDIR='
     line: "ADSHARES_WORKINGDIR={{ service_dir }}/storage/wallet"
+
+# REVIEWER_USER_ID
+- name: "{{ service_name }} | setup | env | Set Reviewer User ID"
+  ansible.builtin.lineinfile:
+    path: "{{ service_dir }}-init/{{ service_env_file_local }}"
+    regexp: '^REVIEWER_USER_ID='
+    line: "REVIEWER_USER_ID=11193"
+    insertafter: "EOF"
