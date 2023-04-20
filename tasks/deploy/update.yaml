@@ -17,6 +17,12 @@
     loop_var: purge_dir
   when: deploy_purge|bool
 
+- name: "{{ service_name }} | deploy | update | fetch {{ repo_url }} branches"
+  ansible.builtin.command: 
+    cmd: "git fetch --prune --tags"
+    chdir: "{{ deploy_dir }}"
+  become_user: "{{ service_user }}"
+
 - name: "{{ service_name }} | deploy | update | Git update {{ repo_url }} version {{ repo_version }}"
   ansible.builtin.git:
     repo: "{{ repo_url }}"

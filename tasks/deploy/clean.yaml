@@ -17,8 +17,10 @@
     recurse: false
   register: versions_to_clean
 
-- name: "{{ service_name }} | deploy | clean | Remove versions older than {{ clean_after_days }} days"
-  ansible.builtin.file:
-    path: "{{ item.path }}"
-    state: absent
-  with_items: "{{ versions_to_clean.files }}"
+# - name: "{{ service_name }} | deploy | clean | Remove versions older than {{ clean_after_days }} days"
+#   ansible.builtin.file:
+#     path: "{{ outer_item.path }}"
+#     state: absent
+#   with_items: "{{ versions_to_clean.files }}"
+#   loop_control:
+#     loop_var: outer_item
